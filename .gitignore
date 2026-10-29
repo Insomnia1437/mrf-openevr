@@ -1,0 +1,56 @@
+# ==============================================================================
+# Vivado & Vitis .gitignore for Xilinx FPGA / Zynq Projects
+# ==============================================================================
+
+# Vivado temporary files and logs
+*.log
+*.jou
+*.str
+*.pb
+*.vds
+*.rds
+*.dcp
+*.wdb
+*.wcfg.bak
+*.rpt
+
+# Vivado project auto-generated directories
+.Xil/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+openevr/
+
+# Vivado IP generated outputs (Only keep source IP definition .xci / .xcix)
+ip/*/
+ip/*.dcp
+ip/*.veo
+ip/*.xml
+ip/*.xdc
+ip/*_stub.*
+ip/*_sim_netlist.*
+
+# Vitis / Xilinx SDK workspace & build outputs
+.metadata/
+*.component/
+*.elf
+*.bin
+*.bif
+BOOT.BIN
+bootimage/
+workspace/
+vitis_workspace/
+
+# OS specific files
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Editor & Tool directories
+.vscode/
+.idea/
+*.swp
+*~

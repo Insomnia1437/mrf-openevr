@@ -118,7 +118,8 @@ set proj_dir [get_property directory [current_project]]
 
 # Set project properties
 set obj [current_project]
-set_property -name "board_part" -value "em.avnet.com:picozed_7030_fmc2:part0:1.1" -objects $obj
+# set_property -name "board_part" -value "em.avnet.com:picozed_7030_fmc2:part0:1.1" -objects $obj
+set_property -name "board_part" -value "avnet-tria:picozed_7030_fmc2:part0:1.4" -objects $obj
 set_property -name "default_lib" -value "xil_defaultlib" -objects $obj
 set_property -name "dsa.num_compute_units" -value "60" -objects $obj
 set_property -name "ip_cache_permissions" -value "read write" -objects $obj

@@ -886,14 +886,14 @@ begin
     generic map (
       ALMOST_EMPTY_OFFSET => X"0080",
       ALMOST_FULL_OFFSET => X"0080",
-      DATA_WIDTH => 36,
+      DATA_WIDTH => 72,
       DO_REG => 1,
       EN_SYN => FALSE,
-      FIFO_MODE => "FIFO36",
+      FIFO_MODE => "FIFO36_72",
       FIRST_WORD_FALL_THROUGH => FALSE,
-      INIT => X"000000000",
+      INIT => X"000000000000000000",
       SIM_DEVICE => "7SERIES",
-      SRVAL => X"000000000")
+      SRVAL => X"000000000000000000")
     port map (
       DO => fifo_do,
       DOP => fifo_dop,

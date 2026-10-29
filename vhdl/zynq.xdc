@@ -264,4 +264,5 @@ set_property IOSTANDARD LVCMOS18 [get_ports -of_objects [get_iobanks 13]];
 # set_property IOSTANDARD LVCMOS25 [get_ports -of_objects [get_iobanks 13]];
 # set_property IOSTANDARD LVCMOS33 [get_ports -of_objects [get_iobanks 13]];
 
-create_clock -period 7 [get_ports MGTREFCLK1_N]
+create_clock -period 8.7535 [get_ports MGTREFCLK1_N]
+create_clock -period 28.0112 [get_ports PL_CLK]
