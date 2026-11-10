@@ -122,6 +122,15 @@ architecture structure of zynq_top is
       ov_flag           : out std_logic_vector(0 to 127);
       clear_flag        : in std_logic_vector(0 to 127);
       
+      -- Configurable data buffer interface
+      cfg_rx_flag       : out std_logic;
+      cfg_cs_flag       : out std_logic;
+      cfg_ov_flag       : out std_logic;
+      cfg_receiving     : out std_logic;
+      cfg_size          : out std_logic_vector(15 downto 0);
+      cfg_clear_flag    : in std_logic := '0';
+      cfg_irq_ena       : in std_logic := '0';
+
       reset             : in std_logic);
   end component;
 
@@ -184,6 +193,14 @@ architecture structure of zynq_top is
   signal databuf_ov_flag     : std_logic_vector(0 to 127);
   signal databuf_clear_flag  : std_logic_vector(0 to 127);
   signal databuf_irq_dc      : std_logic;
+
+  signal databuf_cfg_rx_flag    : std_logic;
+  signal databuf_cfg_cs_flag    : std_logic;
+  signal databuf_cfg_ov_flag    : std_logic;
+  signal databuf_cfg_receiving  : std_logic;
+  signal databuf_cfg_size       : std_logic_vector(15 downto 0);
+  signal databuf_cfg_clear_flag : std_logic;
+  signal databuf_cfg_irq_ena    : std_logic;
 
   signal topology_addr       : std_logic_vector(31 downto 0);
   
@@ -275,11 +292,23 @@ begin
       ov_flag => databuf_ov_flag,
       clear_flag => databuf_clear_flag,
 
+      cfg_rx_flag => databuf_cfg_rx_flag,
+      cfg_cs_flag => databuf_cfg_cs_flag,
+      cfg_ov_flag => databuf_cfg_ov_flag,
+      cfg_receiving => databuf_cfg_receiving,
+      cfg_size => databuf_cfg_size,
+      cfg_clear_flag => databuf_cfg_clear_flag,
+      cfg_irq_ena => databuf_cfg_irq_ena,
+
       reset => sys_reset);
 
   gnd <= '0';
   vcc <= '1';
   
+  databuf_sirq_ena <= (others => '0');
+  databuf_cfg_irq_ena <= '0';
+  databuf_dc_addr <= (others => '0');
+
   databuf_rx_mode <= '1';
   databuf_tx_mode <= '1';
   dc_mode <= '1';
@@ -312,6 +341,8 @@ begin
       rx_clear_viol <= PL_PB1;
       tx_reset <= PL_PB2;
       sys_reset <= PL_PB3;
+      databuf_cfg_clear_flag <= PL_PB4;
+      databuf_clear_flag <= (others => PL_PB5);
       PL_LED1 <= rx_violation;
       PL_LED2 <= rx_link_ok;
 --      PL_LED3 <= event_rxd(0);
@@ -339,7 +370,13 @@ begin
       TRIG0(127 downto 96) <= dc_status;
       TRIG0(159 downto 128) <= delay_comp_rx_status;
       TRIG0(191 downto 160) <= topology_addr;
-      TRIG0(255 downto 192) <= (others => '0');
+      TRIG0(192) <= databuf_cfg_rx_flag;
+      TRIG0(193) <= databuf_cfg_cs_flag;
+      TRIG0(194) <= databuf_cfg_ov_flag;
+      TRIG0(195) <= databuf_cfg_receiving;
+      TRIG0(211 downto 196) <= databuf_cfg_size;
+      TRIG0(212) <= databuf_irq_dc;
+      TRIG0(255 downto 213) <= (others => '0');
     end if;
   end process;
 
