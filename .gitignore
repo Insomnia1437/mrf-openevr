@@ -38,6 +38,7 @@ ip/*_sim_netlist.*
 *.elf
 *.bin
 *.bif
+dfx_runtime.txt
 BOOT.BIN
 bootimage/
 workspace/
