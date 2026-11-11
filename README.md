@@ -1,11 +1,19 @@
 # mrf-openevr
+
 - Support Vivado 2025.2.1
-- Download Avnet board files from https://github.com/Avnet/bdf
-- Add Avnet board files to `C:\Users\USER\AppData\Roaming\Xilinx\Vivado\2025.2.1\xhub\board_store\xilinx_board_store\XilinxBoardStore\Vivado\2025.2.1\boards`
-- For linux, path is: `/opt/Xilinx/2026.1/Vivado/data/boards/board_files`
 - Support configurable size data buffer
 
---------------Original----------------
+### How to use 
+
+Download Avnet board files from https://github.com/Avnet/bdf
+
+Add Avnet board files to  `C:\Users\USER\AppData\Roaming\Xilinx\Vivado\2025.2.1\xhub\board_store\xilinx_board_store\XilinxBoardStore\Vivado\2025.2.1\boards`
+
+For linux, path is: `/opt/Xilinx/2026.1/Vivado/data/boards/board_files`
+
+
+--------------Original README----------------
+
 Open source Event Receiver implementation
 
 Prerequisites
